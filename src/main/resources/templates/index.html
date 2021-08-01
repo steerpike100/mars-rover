@@ -3,25 +3,34 @@
     <title>Mars Rover API App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
-</head>
 <body>
 <div class="container">
     <h2>Welcome to the Mars Rover Web App</h2>
+    <form method="post" action="" id="formRoverType">
+        <input type="hidden" id="marsApiRoverData" name="marsApiRoverData" value=""/>
+        <div class="btn-group btn-group-lg" role="group" style="margin: 2em 0em;">
+            <button type="button" class="btn btn-secondary" id="marsApiCuriosity">Curiosity</button>
+            <button type="button" class="btn btn-secondary" id="marsApiOpportunity">Opportunity</button>
+            <button type="button" class="btn btn-secondary" id="marsApiSpirit">Spirit</button>
+        </div>
+    </form>
+
     <div th:each="index: ${#numbers.sequence(0, roverData.photos.size(),4)}" class="row" style="margin-bottom:1.5em">
-        <div class="col-sm">
+        <div class="col-sm" th:if="${index < roverData.photos.size()}">
             <img th:src="${roverData.photos[index].imgSrc}" class="img-fluid"/>
         </div>
-        <div class = "col-sm" th:if="${index+1 < roverData.photos.size}">
+        <div class="col-sm" th:if="${index+1 < roverData.photos.size()}">
             <img th:src="${roverData.photos[index+1].imgSrc}" class="img-fluid"/>
         </div>
-        <div class = "col-sm" th:if="${index+2 < roverData.photos.size}">
+        <div class="col-sm" th:if="${index+2 < roverData.photos.size()}">
             <img th:src="${roverData.photos[index+2].imgSrc}" class="img-fluid"/>
         </div>
-        <div class = "col-sm" th:if="${index+3 < roverData.photos.size}">
+        <div class="col-sm" th:if="${index+3 < roverData.photos.size()}">
             <img th:src="${roverData.photos[index+3].imgSrc}" class="img-fluid"/>
         </div>
     </div>
     <!-- <img th:each="photo : ${roverData.photos}" th:src="${photo.imgSrc}" />-->
 </div>
+<script type="text/javascript" src="/js/index.js"></script>
 </body>
 </html>
